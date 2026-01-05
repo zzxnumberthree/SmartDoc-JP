@@ -8,7 +8,7 @@ Spring Boot 3とGoogle Gemini APIを活用し、社内ドキュメントの自�
 技術スタック (Tech Stack)
 言語: Java 21
 
-フレームワーク: Spring Boot 3.4
+フレームワーク: Spring Boot 4.0.1
 
 データベース: MySQL 8.0
 
