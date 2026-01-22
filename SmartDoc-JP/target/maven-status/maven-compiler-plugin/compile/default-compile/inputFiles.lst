@@ -1,0 +1,13 @@
+D:\Special_CODE\SmartDoc-JP\src\main\java\com\spe\smartdocjp\aspect\LoggingAspect.java
+D:\Special_CODE\SmartDoc-JP\src\main\java\com\spe\smartdocjp\config\AiConfig.java
+D:\Special_CODE\SmartDoc-JP\src\main\java\com\spe\smartdocjp\controller\DocumentController.java
+D:\Special_CODE\SmartDoc-JP\src\main\java\com\spe\smartdocjp\controller\WebController.java
+D:\Special_CODE\SmartDoc-JP\src\main\java\com\spe\smartdocjp\exception\GlobalExceptionHandler.java
+D:\Special_CODE\SmartDoc-JP\src\main\java\com\spe\smartdocjp\model\entity\BaseEntity.java
+D:\Special_CODE\SmartDoc-JP\src\main\java\com\spe\smartdocjp\model\entity\Document.java
+D:\Special_CODE\SmartDoc-JP\src\main\java\com\spe\smartdocjp\model\entity\User.java
+D:\Special_CODE\SmartDoc-JP\src\main\java\com\spe\smartdocjp\repository\DocumentRepository.java
+D:\Special_CODE\SmartDoc-JP\src\main\java\com\spe\smartdocjp\repository\UserRepository.java
+D:\Special_CODE\SmartDoc-JP\src\main\java\com\spe\smartdocjp\service\AiAnalysisService.java
+D:\Special_CODE\SmartDoc-JP\src\main\java\com\spe\smartdocjp\service\DocumentService.java
+D:\Special_CODE\SmartDoc-JP\src\main\java\com\spe\smartdocjp\SmartDocJpApplication.java

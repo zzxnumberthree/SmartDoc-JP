@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Smart Doc System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        .summary-box {
+            font-size: 0.9rem;
+            background-color: #f8f9fa;
+            border-left: 4px solid #0d6efd;
+            padding: 10px;
+            white-space: pre-wrap; /* 保留换行符 */
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-dark bg-primary mb-4">
+    <div class="container">
+        <a class="navbar-brand" href="#"><i class="bi bi-robot"></i> SmartDoc JP (AI-DMS)</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h5 class="card-title mb-3">ドキュメントアップロード (Document Upload)</h5>
+            <form action="/upload-view" method="post" enctype="multipart/form-data" class="row g-3">
+                <div class="col-md-8">
+                    <input type="file" name="file" class="form-control" required>
+                </div>
+                <input type="hidden" name="userId" value="1">
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-success w-100">
+                        <i class="bi bi-cloud-upload"></i> Upload & Analyze
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-white">
+            <h5 class="mb-0">分析結果一覧 (Analysis Results)</h5>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">ファイル名 (Filename)</th>
+                        <th scope="col">ステータス (Status)</th>
+                        <th scope="col" style="width: 50%;">AI 要約 (AI Summary)</th>
+                        <th scope="col">作成日 (Date)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="doc : ${documents}">
+                        <td th:text="${doc.id}">1</td>
+                        <td th:text="${doc.originalFilename}">resume.pdf</td>
+                        <td>
+                            <span class="badge"
+                                  th:classappend="${doc.status.name() == 'COMPLETED'? 'text-bg-success' : 'text-bg-warning'}"
+                                  th:text="${doc.status}">COMPLETED</span>
+                        </td>
+                        <td>
+                            <div class="summary-box" th:text="${doc.summary}">
+                                AI generated summary will appear here...
+                            </div>
+                        </td>
+                        <td th:text="${#temporals.format(doc.createdAt, 'yyyy-MM-dd HH:mm')}">2026-01-20</td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(documents)}">
+                        <td colspan="5" class="text-center py-4 text-muted">
+                            まだドキュメントがありません (No documents found)
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
