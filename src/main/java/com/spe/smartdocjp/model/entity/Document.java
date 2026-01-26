@@ -3,6 +3,8 @@ package com.spe.smartdocjp.model.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 
 @Getter
 @Setter
@@ -11,6 +13,10 @@ import lombok.experimental.SuperBuilder;
 @Table(name = "documents")
 @Entity
 @SuperBuilder
+// 1. 拦截删除操作：当调用 repository.delete() 时，执行这条 SQL
+@SQLDelete(sql = "UPDATE documents SET is_deleted = true WHERE id = ?")
+// 2. 拦截查询操作：所有的查询（findAll, findById等）都会自动拼上这个条件
+@SQLRestriction("is_deleted = false")
 
 public class Document extends BaseEntity {
 

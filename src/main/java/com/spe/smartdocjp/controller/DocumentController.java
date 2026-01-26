@@ -38,4 +38,9 @@ public class DocumentController {
         return aiAnalysisService.testConnect();
     }
 
+    @GetMapping("/deleteByDocumentId")
+    public void deleteByDocumentId(@RequestParam("documentId") Long id) {
+        documentService.deleteDocument(id);
+    }
+
 }

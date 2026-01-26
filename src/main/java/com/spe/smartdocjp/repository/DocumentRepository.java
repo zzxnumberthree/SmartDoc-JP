@@ -2,6 +2,8 @@ package com.spe.smartdocjp.repository;
 
 import com.spe.smartdocjp.model.entity.Document;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,6 +15,8 @@ public interface DocumentRepository extends JpaRepository<Document, Long>{
     // select * from users where username = ? and is_deleted = 0     ?????
     List<Document> findByUserIdAndIsDeletedFalse(Long userId);
 
-
+    // 可以不依赖自动生成
+    @Query("SELECT d FROM Document d WHERE d.user.id = :userId")
+    List<Document> findUploadedDocumentsByUserId(@Param("userId") Long userId);
 
 }

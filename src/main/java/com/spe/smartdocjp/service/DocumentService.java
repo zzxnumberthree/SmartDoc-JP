@@ -87,7 +87,6 @@ public class DocumentService {
             summary = "AI Processing Failed: " + e.getMessage();
         }
 
-        // 将文件信息存储到数据库
         Document doc = Document.builder()
                 .title(originalFilename)
                 .originalFilename(originalFilename)
@@ -99,6 +98,7 @@ public class DocumentService {
                 .build();
 
         try {
+            // 将文件信息存储到数据库
             documentRepository.save(doc);
         } catch (Exception e) {
             // 捕获异常，删除刚才写进去的文件
@@ -115,7 +115,10 @@ public class DocumentService {
         return documentRepository.findAll(Sort.by(Sort.Direction.DESC, "createdAt"));
     }
 
-
+    public void deleteDocument(Long id) {
+        // 调用这行代码时，Hibernate 会自动把它转换成 UPDATE 语句
+        documentRepository.deleteById(id);
+    }
 
 
 }
